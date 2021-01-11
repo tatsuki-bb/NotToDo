@@ -39,7 +39,9 @@
         <div class="main">
         <h1>やらないことリスト</h1>
         <h2>やらないことリストを作成し共有しよう！</h2>
-        <a href="/list">ログインせず利用してみる</a>
+        </div>
+        <a href="/list" class="text-sm text-gray-700 underline">ログインせず利用してみる</a>
+        
         </div>
             
     </body>
