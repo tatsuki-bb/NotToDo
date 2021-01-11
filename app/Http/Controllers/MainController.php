@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class MainController extends Controller
 {
     public function showList() {
-        return view("list");
+        return view("NotToDo");
     }
 }

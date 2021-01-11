@@ -28,7 +28,23 @@
                             <li>{{ $post->category->category_name }}</li>
                             <li>{{ $post->user->name }}</li>
                         </ul> 
-                        <a href="{{ route('post.show',$post->id) }}">詳細</a>
+
+        
+                        
+                        <!-- <a href="{{ route('post.show',$post->id) }}">詳細</a> -->
+                    @endforeach
+
+                    @foreach($mainlists as $list) 
+                        <ul>
+                            <li>{{ $list -> content }}</li>
+                            <li>{{ $list -> solution }}</li>
+                            <li>{{ $list -> created_at }}</li>
+                            <li>{{ $list->user->name }}</li>
+                        </ul> 
+
+        
+                        
+                        <a href="{{ route('post.show',$list->id) }}">詳細</a>
                     @endforeach
                   
                 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MainList;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\DB;
@@ -18,9 +19,14 @@ class PostController extends Controller
         $posts = Post::all();
         $posts->load('category');
         $posts->load('user');
+
+        $mainlists = MainList::all();
+        $mainlists->load('user');
+
         
-        return view('list', [
+        return view('NotToDo', [
             'posts' => $posts,
+            'mainlists' =>$mainlists,
         ]);
     }
 
@@ -51,7 +57,7 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(MainList $post)
     {
         dd($post);
     }
