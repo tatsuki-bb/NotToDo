@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>やらないことリスト</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 <body>
 @extends('layouts.app')
@@ -36,8 +37,8 @@
 
                     @foreach($mainlists as $list) 
                         <ul>
-                            <li>{{ $list -> content }}</li>
-                            <li>{{ $list -> solution }}</li>
+                            <li>やらないこと：{{ $list -> content }}</li>
+                            <li>解決策；{{ $list -> solution }}</li>
                             <li>{{ $list -> created_at }}</li>
                             <li>{{ $list->user->name }}</li>
                         </ul> 
@@ -52,7 +53,8 @@
         </div>
     </div>
 </div>
-{{ __('You are logged in!') }}
+<button type="button" class="btn btn-primary" >リストに登録</button>
+<a href="/post/create">リスト登録</a>
 @endsection
 </body>
 </html>

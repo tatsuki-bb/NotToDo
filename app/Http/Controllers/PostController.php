@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\MainList;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
@@ -37,7 +38,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -48,7 +49,29 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validate($request,[
+            'content' => 'required',
+            'solution' => 'required|max:255',
+            'user_id' => 'required|numeric',
+        ], [
+            'content.required' => ':attributeを入力してください',
+            'solution.required' => ':attributeを入力してください',
+            'user_id.required' => ':attributeを入力してください',
+            'solution.max' => ':attributeの文字数は255文字までです',
+            'user_id.numeric' => ':attributeは数字のみ適用されます',
+        ]
+            
+    
+    );
+
+    $post = new MainList();
+    $post->content = $request->content;
+    $post->solution = $request->solution;
+    $post->user_id = $request->user_id;
+    $post->save;
+
+        return redirect("/post");
     }
 
     /**

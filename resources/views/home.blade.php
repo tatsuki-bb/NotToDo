@@ -1,5 +1,7 @@
 
 
+
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -14,7 +16,10 @@
                         </div>
                     @endif
 @extends('layouts.app')
-                    {{ __('You are logged in!') }}
+
+
+
+                    ログインできました！
                 </div>
             </div>
         </div>
