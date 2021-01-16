@@ -38,13 +38,10 @@
                     @foreach($mainlists as $list) 
                         <ul>
                             <li>やらないこと：{{ $list -> content }}</li>
-                            <li>解決策；{{ $list -> solution }}</li>
-                            <li>{{ $list -> created_at }}</li>
-                            <li>{{ $list->user->name }}</li>
-                        </ul> 
-
-        
-                        
+                            <li>解決策：{{ $list -> solution }}</li>
+                            <li>投稿日：{{ $list -> created_at }}</li>
+                            <li>投稿者：<a href="{{ route('users.show',$list->user_id) }}">{{ $list->user->name }}</a></li>
+                        </ul>
                         <a href="{{ route('post.show',$list->id) }}">詳細</a>
                     @endforeach
                   

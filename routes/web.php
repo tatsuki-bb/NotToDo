@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,5 @@ Route::get('/not' ,[MainController::class, 'showList']);
 
 Route::get('/post',[PostController::class, 'index'])->name('posts,index');
 Route::resource('post',PostController::class,['except' => 'index']);
+
+Route::resource('/users',UserController::class);

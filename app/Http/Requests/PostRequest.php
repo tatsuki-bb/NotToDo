@@ -29,4 +29,26 @@ class PostRequest extends FormRequest
             'user_id' => 'required|numeric',
         ];
     }
+    public function messages()
+    {
+        return [
+                'content.required' => ':attributeを入力してください',
+                'solution.required' => ':attributeを入力してください',
+                'user_id.required' => ':attributeがありません',
+                'solution.max' => ':attributeの文字数は255文字までです',
+                'user_id.numeric' => ':attributeは数字のみ適用されます',
+        ];
+
+    }
+
+    public function attributes()
+    {
+        return [
+                'content' => '"やらないこと"',
+                'solution' => '"解決策"',   
+                'user_id' => '"ユーザーID"',
+        ];
+    }
+
+    
 }

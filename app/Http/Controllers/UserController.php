@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MainList;
 use Illuminate\Http\Request;
-use App\Models\Post;
-use App\Http\Requests\PostRequest;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
-class PostController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,18 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
-        $posts->load('category');
-        $posts->load('user');
-
-        $mainlists = MainList::all();
-        $mainlists->load('user');
-
-        
-        return view('NotToDo', [
-            'posts' => $posts,
-            'mainlists' =>$mainlists,
-        ]);
+        //
     }
 
     /**
@@ -38,7 +24,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('create');
+        //
     }
 
     /**
@@ -47,15 +33,9 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostRequest $request)
+    public function store(Request $request)
     {
-    $post = new MainList();
-    $post->content = $request->content;
-    $post->solution = $request->solution;
-    $post->user_id = $request->user_id;
-    $post->save;
-
-        return redirect("/post");
+        //
     }
 
     /**
@@ -64,14 +44,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(MainList $post)
+    public function show(User $user)
     {
-        
-        $mainlists = MainList::all();
-        $mainlists->load('user'); //不要かもしれない
-
-        return view('detail',[
-            'mainlists' =>$mainlists
+        return view('show', [
+            'user' => $user,
         ]);
     }
 
