@@ -64,10 +64,14 @@
                                     <a href="{{ route('post.create') }}">投稿する</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        ログアウト
+                                    <a href="#">メッセージ</a>
+                                </li>
+                                <li>
+                                    <a href="#">フォロワー</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                    ログアウト
                                     </a>
                                 </li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

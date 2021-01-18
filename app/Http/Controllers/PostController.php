@@ -64,10 +64,12 @@ class PostController extends Controller
 
         $mainlists->save();
 
+        $message = $mainlists->content;
+
     // $input = $request->only($mainlists->getFillable());
     // $post = $mainlists->create($input);
 
-        return redirect(route('posts,index'));
+        return redirect(route('posts,index'))->with('registration',"「${message}」を登録しました");
     }
 
     /**
@@ -115,7 +117,9 @@ class PostController extends Controller
         
         $mainlists->save();
 
-        return redirect(route('post.show',$mainlists->id));
+        $message = $mainlists->content;
+
+        return redirect(route('post.show',$mainlists->id))->with('message',"「${message}」を更新しました");
     }
 
     /**
@@ -128,8 +132,10 @@ class PostController extends Controller
     {
         $mainlists = MainList::find($id);
 
+        $message = $mainlists->content;
+
         $mainlists->delete();
 
-        return redirect(route('posts,index'));
+        return redirect(route('posts,index'))->with('message',"「${message}」を削除しました");
     }
 }

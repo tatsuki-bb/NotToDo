@@ -9,6 +9,15 @@
 <body>
 @extends('layouts.app')
 @section('content')
+
+@if (session('message'))
+    <span>{{ (session('message')) }}</span>
+@endif
+
+@if (session('registration'))
+    <span>{{ (session('registration')) }}</span>
+@endif
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
