@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                
 
                 <div class="card-body">
                     @if (session('status'))
@@ -17,9 +17,9 @@
                     @endif
 @extends('layouts.app')
 
-
-
-                    ログインできました！
+                                <a id="navbarDropdown"  href="{{  route('posts,index')}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}のリスト
+                                </a>
                 </div>
             </div>
         </div>

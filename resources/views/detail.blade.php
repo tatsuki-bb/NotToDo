@@ -8,6 +8,15 @@
 </head>
 <body>
     <a href="/post">戻る</a>
+
+    <ul>
+        <li>やらないこと：{{  $mainlists->content }}</li>
+        <li>解決策：{{  $mainlists->solution }}</li>
+        <li>投稿日：{{  $mainlists->created_at }}</li>
+        <li>投稿者：<a href="{{ route('users.show', $mainlists->user_id) }}">{{  $mainlists->user->name }}</a></li>
+    </ul>
+
+    <a href="{{route('edit', $mainlists->id) }}">編集</a>
     
 </body>
 </html>

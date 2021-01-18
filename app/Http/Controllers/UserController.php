@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Mainlist;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -46,8 +47,11 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
+        // $mainlists = MainList::all();
+        // $mainlists->load('user');
         return view('show', [
             'user' => $user,
+            // 'mainlists' =>$mainlists,
         ]);
     }
 

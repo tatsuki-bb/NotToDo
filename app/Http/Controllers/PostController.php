@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class PostController extends Controller
 {
@@ -15,22 +16,28 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::all();
-        $posts->load('category');
-        $posts->load('user');
 
         $mainlists = MainList::all();
         $mainlists->load('user');
 
+        $listPaginate = new LengthAwarePaginator(
+            $mainlists->forPage($request->page, 10), // 現在のページのsliceした情報(現在のページ, 1ページあたりの件数)
+            $mainlists->count(), // 総件数
+            10,
+            null, // 現在のページ(ページャーの色がActiveになる)
+            ['path' => $request->url()] // ページャーのリンクをOptionのpathで指定
+        );
+    
+    
         
         return view('NotToDo', [
-            'posts' => $posts,
-            'mainlists' =>$mainlists,
+            'mainlists' => $listPaginate ,
         ]);
     }
 
+  
     /**
      * Show the form for creating a new resource.
      *
@@ -50,10 +57,13 @@ class PostController extends Controller
     public function store(PostRequest $request)
     {
     $post = new MainList();
-    $post->content = $request->content;
-    $post->solution = $request->solution;
-    $post->user_id = $request->user_id;
-    $post->save;
+    // $post->content = $request->content;
+    // $post->solution = $request->solution;
+    // $post->user_id = $request->user_id;
+    // $post->save;
+
+    $input = $request->only($post->getFillable());
+    $post = $post->create($input);
 
         return redirect("/post");
     }
@@ -64,14 +74,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(MainList $post)
+    public function show($id)
     {
         
-        $mainlists = MainList::all();
-        $mainlists->load('user'); //不要かもしれない
+        $mainlists = MainList::find($id);
+        $mainlists->load('user'); 
 
         return view('detail',[
-            'mainlists' =>$mainlists
+            'mainlists' => $mainlists,
         ]);
     }
 

@@ -25,9 +25,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/not' ,[MainController::class, 'showList']);
+Route::get('/not' ,[MainController::class, 'showList'])->name("not");
 
 Route::get('/post',[PostController::class, 'index'])->name('posts,index');
 Route::resource('post',PostController::class,['except' => 'index']);
 
 Route::resource('/users',UserController::class);
+
+Route::get('/edit/{id}',[MainController::class, 'edit'])->name('edit');

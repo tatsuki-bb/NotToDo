@@ -24,8 +24,8 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    HOME
+                <a class="navbar-brand" href="{{ route('home') }}">
+                    MENU
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -37,35 +37,34 @@
 
                     </ul>
 
+
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul>
                         <!-- Authentication Links -->
                         @guest　　<!-- ログインしていないとき -->
                             @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">ログイン</a>
+                                <li>
+                                    <a href="{{ route('login') }}">ログイン</a>
                                 </li>
                             @endif
                             
                             @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">登録</a>
+                                <li>
+                                    <a href="{{ route('register') }}">登録</a>
                                 </li>
                             @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-                                
-                            
+
+                           
+
+
+                         @else
+                        
+                                <div aria-labelledby="navbarDropdown">
+                                <li>
+                                    <a href="{{ route('post.create') }}">投稿する</a>
                                 </li>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <li class="nav-item dropdown">
-                                    <a href="{{ route('post.create') }}" class='dropdown-item'>投稿する</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                <li>
+                                    <a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         ログアウト
@@ -75,7 +74,7 @@
                                         @csrf
                                     </form>
                                 </div>
-                           
+
                         @endguest
                     </ul>
                 </div>

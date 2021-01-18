@@ -8,6 +8,16 @@
 </head>
 <body>
     <a href="/post">戻る</a>
-    
+    {{ $user->name }}のページです
+
+    @foreach($user->mainlists as $list) 
+                        <ul>
+                            <li>やらないこと：{{ $list->content }}</li>
+                            <li>解決策：{{ $list->solution }}</li>
+                            <li>投稿日：{{ $list->created_at }}</li>
+                        </ul>
+                        <a href="{{ route('post.show',$list->id) }}">詳細</a>
+    @endforeach
+                  
 </body>
 </html>

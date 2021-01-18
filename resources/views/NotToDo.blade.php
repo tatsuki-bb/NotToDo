@@ -13,7 +13,6 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -21,19 +20,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    @foreach($posts as $post) 
-                        <ul>
-                            <li>{{ $post -> title }}</li>
-                            <li>{{ $post -> content }}</li>
-                            <li>{{ $post->category->category_name }}</li>
-                            <li>{{ $post->user->name }}</li>
-                        </ul> 
-
-        
-                        
-                        <!-- <a href="{{ route('post.show',$post->id) }}">詳細</a> -->
-                    @endforeach
 
                     @foreach($mainlists as $list) 
                         <ul>
@@ -44,14 +30,17 @@
                         </ul>
                         <a href="{{ route('post.show',$list->id) }}">詳細</a>
                     @endforeach
+
+                    
                   
                 </div>
             </div>
         </div>
     </div>
+    {{ $mainlists->links('pagination::bootstrap-4') }}
 </div>
-<button type="button" class="btn btn-primary" >リストに登録</button>
-<a href="/post/create">リスト登録</a>
+<!-- <a href="/post/create">リスト登録</a> -->
 @endsection
 </body>
 </html>
+
