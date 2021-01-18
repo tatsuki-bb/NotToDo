@@ -23,9 +23,9 @@ class PostController extends Controller
         $mainlists->load('user');
 
         $listPaginate = new LengthAwarePaginator(
-            $mainlists->forPage($request->page, 10), // 現在のページのsliceした情報(現在のページ, 1ページあたりの件数)
+            $mainlists->forPage($request->page, 5), // 現在のページのsliceした情報(現在のページ, 1ページあたりの件数)
             $mainlists->count(), // 総件数
-            10,
+            5,
             null, // 現在のページ(ページャーの色がActiveになる)
             ['path' => $request->url()] // ページャーのリンクをOptionのpathで指定
         );
@@ -56,16 +56,18 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-    $post = new MainList();
-    // $post->content = $request->content;
-    // $post->solution = $request->solution;
-    // $post->user_id = $request->user_id;
-    // $post->save;
+        $mainlists = new MainList();
 
-    $input = $request->only($post->getFillable());
-    $post = $post->create($input);
+        $mainlists->content = $request->content;
+        $mainlists->solution = $request->solution;
+        $mainlists->user_id = $request->user_id;
 
-        return redirect("/post");
+        $mainlists->save();
+
+    // $input = $request->only($mainlists->getFillable());
+    // $post = $mainlists->create($input);
+
+        return redirect(route('posts,index'));
     }
 
     /**
@@ -103,9 +105,17 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
-        //
+        
+        $mainlists = MainList::find($id); 
+
+        $mainlists->content = $request->content;
+        $mainlists->solution = $request->solution;
+        
+        $mainlists->save();
+
+        return redirect(route('post.show',$mainlists->id));
     }
 
     /**
@@ -116,6 +126,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $mainlists = MainList::find($id);
+
+        $mainlists->delete();
+
+        return redirect(route('posts,index'));
     }
 }

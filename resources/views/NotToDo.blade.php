@@ -24,7 +24,6 @@
                     @foreach($mainlists as $list) 
                         <ul>
                             <li>やらないこと：{{ $list -> content }}</li>
-                            <li>解決策：{{ $list -> solution }}</li>
                             <li>投稿日：{{ $list -> created_at }}</li>
                             <li>投稿者：<a href="{{ route('users.show',$list->user_id) }}">{{ $list->user->name }}</a></li>
                         </ul>

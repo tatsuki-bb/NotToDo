@@ -34,7 +34,7 @@ class PostRequest extends FormRequest
         return [
                 'content.required' => ':attributeを入力してください',
                 'solution.required' => ':attributeを入力してください',
-                'user_id.required' => ':attributeがありません',
+                'user_id.required' => ':attributeが登録されておりません',
                 'solution.max' => ':attributeの文字数は255文字までです',
                 'user_id.numeric' => ':attributeは数字のみ適用されます',
         ];
@@ -46,7 +46,7 @@ class PostRequest extends FormRequest
         return [
                 'content' => '"やらないこと"',
                 'solution' => '"解決策"',   
-                'user_id' => '"ユーザーID"',
+                'user_id' => '"ユーザー"',
         ];
     }
 

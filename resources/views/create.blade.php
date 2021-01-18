@@ -10,6 +10,7 @@
     <a href="/post">戻る</a>
     <form action="{{ route('post.store')}}" method="POST">
         {{ csrf_field() }}
+        @method('POST');
         <div class="form-group">
 
             <label for="content">やらないこと</label>    
@@ -42,7 +43,7 @@
                         @endforeach
                 </div>
                  @endif
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">登録</button>
 
         </div>
     </form>
