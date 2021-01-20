@@ -32,7 +32,7 @@ class PostController extends Controller
     
     
         
-        return view('NotToDo', [
+        return view('timeline', [
             'mainlists' => $listPaginate ,
         ]);
     }

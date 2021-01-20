@@ -22,7 +22,9 @@
         <li>投稿者：<a href="{{ route('users.show', $mainlists->user_id) }}">{{  $mainlists->user->name }}</a></li>
     </ul>
 
-    <a href="{{route('edit', $mainlists->id) }}">編集</a>
+    @if ( Auth::id() == $mainlists -> user -> id  )
+        <a href="{{route('edit', $mainlists->id) }}">編集</a>
+    @endif
     
 </body>
 </html>

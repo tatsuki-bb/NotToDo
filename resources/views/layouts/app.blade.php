@@ -64,6 +64,15 @@
                                     <a href="{{ route('post.create') }}">投稿する</a>
                                 </li>
                                 <li>
+                                    <a href="#">マイリスト</a>
+                                </li>
+                                @if(!Route::is('posts,index'))
+                                <li>
+                                    <a href="{{ route('posts,index') }}">タイムライン</a>
+                                </li>
+                                @endif
+                                
+                                <li>
                                     <a href="#">メッセージ</a>
                                 </li>
                                 <li>

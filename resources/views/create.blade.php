@@ -10,7 +10,7 @@
     <a href="/post">戻る</a>
     <form action="{{ route('post.store')}}" method="POST">
         {{ csrf_field() }}
-        @method('POST');
+        @method('POST')
         <div class="form-group">
 
             <label for="content">やらないこと</label>    
