@@ -54,8 +54,6 @@
         </div>
     </form>
 
-    <!-- <a href="#">削除</a> -->
-
     <form style="display:inline" action="{{ route('post.update', $mainlists->id) }}" method="post">
         {{ csrf_field() }}
         @method('DELETE')

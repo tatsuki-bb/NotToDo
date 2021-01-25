@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 <body>
+@extends('layouts.app')
+@section('content')
+    
 
     <a href="{{ route('posts,index') }}">戻る</a>
 
@@ -25,6 +28,7 @@
     @if ( Auth::id() == $mainlists -> user -> id  )
         <a href="{{route('edit', $mainlists->id) }}">編集</a>
     @endif
-    
+
+@endsection
 </body>
 </html>

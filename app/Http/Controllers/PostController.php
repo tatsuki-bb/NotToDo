@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class PostController extends Controller
 {
@@ -19,8 +20,13 @@ class PostController extends Controller
     public function index(Request $request)
     {
 
-        $mainlists = MainList::all();
+        $mainlists = MainList::orderBy('updated_at','desc')->get();
         $mainlists->load('user');
+
+        // Profile::orderBy('ranked_at', 'desc')
+        // ->orderBy('rank', 'asc')
+        // ->get();
+
 
         $listPaginate = new LengthAwarePaginator(
             $mainlists->forPage($request->page, 5), // 現在のページのsliceした情報(現在のページ, 1ページあたりの件数)
@@ -61,7 +67,6 @@ class PostController extends Controller
         $mainlists->content = $request->content;
         $mainlists->solution = $request->solution;
         $mainlists->user_id = $request->user_id;
-
         $mainlists->save();
 
         $message = $mainlists->content;
@@ -138,4 +143,5 @@ class PostController extends Controller
 
         return redirect(route('posts,index'))->with('message',"「${message}」を削除しました");
     }
+
 }

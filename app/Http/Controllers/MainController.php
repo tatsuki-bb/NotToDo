@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mainlist;
+use App\Models\User;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
     public function showList() {
-        return view('NotToDo');
+        return view('timeline');
     }
 
     public function edit($id) {
@@ -21,5 +22,18 @@ class MainController extends Controller
             'mainlists' => $mainlists,
         ]);
     }
+
+    public function myList($id) {
+
+        $user = User::find($id);
+        $user->load("mainLists");
+
+        return view('mylist', [
+            
+            'user' =>$user,
+        ]);
+    }
+
+       
 }
  

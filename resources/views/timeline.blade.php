@@ -34,10 +34,17 @@
                         <ul>
                             <li>やらないこと：{{ $list -> content }}</li>
                             <li>投稿日：{{ $list -> created_at }}</li>
+                            <li>更新日：{{ $list -> updated_at }}</li>
                             <li>投稿者：<a href="{{ route('users.show',$list->user_id) }}">{{ $list->user->name }}</a></li>
                             @if ( Auth::id() == $list -> user -> id  )
                                 <li>your list!!</li>
                             @endif
+
+                            <!-- @if ( $list -> created_at == $list -> updated_at )
+                                <div class= "signUp">{{ $list->user->name }}さんの新規投稿です</div>
+                            @endif -->
+
+
                         </ul>
 
                         <a href="{{ route('post.show',$list->id) }}">詳細</a>

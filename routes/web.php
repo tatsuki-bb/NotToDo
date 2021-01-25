@@ -25,11 +25,20 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/not' ,[MainController::class, 'showList'])->name("not");
+Route::get('/timeline' ,[MainController::class, 'showList'])->name("timeline");
 
 Route::get('/post',[PostController::class, 'index'])->name('posts,index');
 Route::resource('post',PostController::class,['except' => 'index']);
 
-Route::resource('/users',UserController::class);
+
+Route::group(['middleware' => 'auth'], function() { //ログイン状態のみ
+
+    Route::resource('users',UserController::class);
+
+    Route::delete('users/{user}/unfollow', [UserController::class,'unfollow'])->name('unfollow');
+
+});
 
 Route::get('/edit/{id}',[MainController::class, 'edit'])->name('edit');
+
+Route::get('/mylist/{id}',[MainController::class,'myList'])->name('myList');
