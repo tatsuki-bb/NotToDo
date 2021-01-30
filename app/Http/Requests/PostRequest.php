@@ -27,6 +27,7 @@ class PostRequest extends FormRequest
             'content' => 'required',
             'solution' => 'required|max:255',
             'user_id' => 'required|numeric',
+            
         ];
     }
     public function messages()

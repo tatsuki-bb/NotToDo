@@ -7,9 +7,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 </head>
 
+<body>
+
 @extends('layouts.app')
 
 @section('content')
+
+<a href="{{ route('searchUser')}}">ユーザーを探す</a>
 
 @if (session('unfollowing'))
     <span>{{ (session('unfollowing')) }}</span>
@@ -162,3 +166,6 @@
         </div>
     </div>
 @endsection
+
+    
+</body>

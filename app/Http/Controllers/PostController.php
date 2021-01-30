@@ -9,6 +9,7 @@ use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Symfony\Component\HttpKernel\Profiler\Profile;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -74,7 +75,7 @@ class PostController extends Controller
     // $input = $request->only($mainlists->getFillable());
     // $post = $mainlists->create($input);
 
-        return redirect(route('posts,index'))->with('registration',"「${message}」を登録しました");
+        return redirect(route('myList',Auth::id()))->with('registration',"「${message}」を登録しました");
     }
 
     /**
@@ -141,7 +142,7 @@ class PostController extends Controller
 
         $mainlists->delete();
 
-        return redirect(route('posts,index'))->with('message',"「${message}」を削除しました");
+        return redirect(route('myList',Auth::id()))->with('message',"「${message}」を削除しました");
     }
 
 }

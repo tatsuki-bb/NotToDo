@@ -15,7 +15,7 @@
     <a href="/post">戻る</a>
     {{ $user->name }}のやらないことリスト
 
-    @foreach($user->mainlists as $list) 
+        @foreach($user->mainlists as $list) 
                         <ul>
                             <li>やらないこと：{{ $list->content }}</li>
                             <li>解決策：{{ $list->solution }}</li>
@@ -23,7 +23,13 @@
                             <li>更新日：{{ $list->updated_at }}</li>
                         </ul>
                         <a href="{{ route('post.show',$list->id) }}">詳細</a>
-    @endforeach
+                        @php
+                            $i = 1
+                        @endphp
+        @endforeach
+    @if(empty($i))
+        <h3>さっそく"やらないこと"を登録しよう</h3>
+    @endif
                   
 @endsection
 </body>

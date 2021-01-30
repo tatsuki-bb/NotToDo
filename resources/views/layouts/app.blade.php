@@ -46,10 +46,12 @@
 
                          @else
                         
+                                @if(!Route::is('post.create'))
                                 <li>
                                     <a href="{{ route('post.create') }}">投稿する</a>
                                 </li>
-                            
+                                @endif
+
                                 @if(!Route::is('myList'))
                                 <li>
                                     <a href="{{ route('myList',Auth::id())}}">マイリスト</a>

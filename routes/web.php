@@ -42,3 +42,11 @@ Route::group(['middleware' => 'auth'], function() { //ログイン状態のみ
 Route::get('/edit/{id}',[MainController::class, 'edit'])->name('edit');
 
 Route::get('/mylist/{id}',[MainController::class,'myList'])->name('myList');
+
+Route::get('/searchuser',[MainController::class,'searchUser'])->name('searchUser');
+
+Route::post('/searching',[MainController::class,'searching'])->name('searching');
+
+Route::delete('/searchunfollow/{id}', [MainController::class,'searchUnfollow'])->name('searchUnfollow');
+
+Route::post('/searchfollow',[MainController::class,'searchFollow'])->name('searchFollow');

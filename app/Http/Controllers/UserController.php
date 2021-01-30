@@ -61,7 +61,7 @@ class UserController extends Controller
         $follow->user_id = $request->user_id;
         $follow->follow_id =$request->follow_id;
 
-        // dd($id);
+        // dd($follow);
         
         $follow->save();
 
@@ -139,16 +139,13 @@ class UserController extends Controller
 
         // $unfollow = Following::find($id);
 
-        
-
         Following::where('id',$unfollowId['0'])->delete();
-
-
 
         $unfollowing = User::find($id)->name;
 
-
         return back()->with('unfollowing',"「${unfollowing}」さんのフォローを解除しました");
     }
+
+   
    
 }
