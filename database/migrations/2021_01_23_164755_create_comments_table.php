@@ -24,7 +24,6 @@ class CreateCommentsTable extends Migration
             $table->foreign('tweet_id')->references('id')->on('mainlists')->onDelete('cascade')->onUpdate('cascade');
         });
     }
-
     /**
      * Reverse the migrations.
      *

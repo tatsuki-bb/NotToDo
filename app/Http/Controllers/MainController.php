@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Mainlist;
 use App\Models\User;
 use App\Models\Post;
+use App\Models\Following;
 use Illuminate\Http\Request;
 use App\Http\Requests\SearchRequest;
-use App\Models\Following;
+use App\Http\Requests\MessageRequest;
 use Illuminate\Support\Facades\Auth;
+
 
 class MainController extends Controller
 {
@@ -104,6 +107,16 @@ class MainController extends Controller
             'searchedUsers' => $searchedUsers
         ]);
         // ->with('searchFollowing',"「${searchFollowing}」さんをフォローしました");
+    }
+
+    public function sendMessage(MessageRequest $request)
+    {
+        dd($request);
+    }
+
+    public function deleteMessage() 
+    {
+
     }
 
 }

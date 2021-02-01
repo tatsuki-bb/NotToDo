@@ -50,3 +50,7 @@ Route::post('/searching',[MainController::class,'searching'])->name('searching')
 Route::delete('/searchunfollow/{id}', [MainController::class,'searchUnfollow'])->name('searchUnfollow');
 
 Route::post('/searchfollow',[MainController::class,'searchFollow'])->name('searchFollow');
+
+Route::post('/sendMessage',[MainController::class,'sendMessage'])->name('sendMessage');
+
+Route::delete('/deleteMessage',[MainController::class,'deleteMessage'])->name('deleteMessage');

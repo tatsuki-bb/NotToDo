@@ -48,6 +48,7 @@
                         </ul>
 
                         <a href="{{ route('post.show',$list->id) }}">詳細</a>
+                        
                        
                     @endforeach
 

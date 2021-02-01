@@ -25,8 +25,36 @@
         <li>投稿者：<a href="{{ route('users.show', $mainlists->user_id) }}">{{  $mainlists->user->name }}</a></li>
     </ul>
 
-    @if ( Auth::id() == $mainlists -> user -> id  )
+    @if ( Auth::id() == $mainlists->user_id  )
         <a href="{{route('edit', $mainlists->id) }}">編集</a>
+
+    @else
+        メッセージを送信できます
+        <form action="{{ route('sendMessage') }}" method="POST">
+        {{ csrf_field() }}
+            @method('POST')
+                <textarea class="form-contorl" name="message"></textarea>
+                @if ($errors->has('message'))
+                <div class="alert alert-danger mt-3">
+                        @foreach ($errors->get('message') as $error)
+                            {{ $error }}
+                        @endforeach
+                </div>
+                 @endif
+
+                <input type="hidden" name="sendId" value="{{ Auth::id() }}">
+                @if ($errors->has('sendId'))
+                <div class="alert alert-danger mt-3">
+                        @foreach ($errors->get('sendId') as $error)
+                            {{ $error }}
+                        @endforeach
+                </div>
+                 @endif
+                <input type="hidden" name="getId" value="{{ $mainlists->user_id }}">
+                <input type="hidden" name="mainlistsId" value="{{ $mainlists->id }}">
+                <button type="submit">送信</button>
+        
+        </form>
     @endif
 
 @endsection
