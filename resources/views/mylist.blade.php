@@ -14,7 +14,7 @@
     
     <a href="/post">戻る</a>
     {{ $user->name }}のやらないことリスト
-
+    
         @foreach($user->mainlists as $list) 
                         <ul>
                             <li>やらないこと：{{ $list->content }}</li>

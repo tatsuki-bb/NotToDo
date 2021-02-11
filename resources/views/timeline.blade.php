@@ -21,9 +21,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            
 
-                <div class="card-body">
+                
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -31,6 +31,8 @@
                     @endif
 
                     @foreach($mainlists as $list) 
+                    <div class="card">
+                    <div class="card-body">
                         <ul>
                             <li>やらないこと：{{ $list -> content }}</li>
                             <li>投稿日：{{ $list -> created_at }}</li>
@@ -49,13 +51,14 @@
 
                         <a href="{{ route('post.show',$list->id) }}">詳細</a>
                         
-                       
+                    </div>
+                    </div>
                     @endforeach
 
                     
                   
-                </div>
-            </div>
+                
+            
         </div>
     </div>
     {{ $mainlists->links('pagination::bootstrap-4') }}

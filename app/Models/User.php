@@ -45,9 +45,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function mainLists() {
+    public function mainLists()
+    {
         return $this->hasMany(Mainlist::class,'user_id','id');
     }
+
+    public function getmessages()
+    {
+        return $this->hasMany(Message::class,'get_id','id');
+    }
+
+    
+
 
     public function followings() //フォローしている人を取得
     {

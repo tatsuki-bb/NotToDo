@@ -65,7 +65,7 @@ class UserController extends Controller
         
         $follow->save();
 
-        $following = User::find($request->user_id)->name;
+        $following = User::find($request->follow_id)->name;
 
 
         return back()->with('following',"「${following}」さんをフォローしました");

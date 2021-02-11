@@ -27,7 +27,6 @@
                 </a>
                 
 
-
                     <!-- Right Side Of Navbar -->
                     <ul>
                         <!-- Authentication Links -->
@@ -64,9 +63,14 @@
                                 </li>
                                 @endif
                                 
+                                @if(!Route::is('messagebox'))
                                 <li>
-                                    <a href="#">メッセージ</a>
+                                    <a href="{{ route('messagebox',Auth::id()) }}">メッセージ</a>
+                                    @if (!$checkCount == 0) 
+                                        <span style="color: yellow;">new✉</span>
+                                    @endif
                                 </li>
+                                @endif
 
                                 @if(!Route::is('users.index'))
                                 <li>

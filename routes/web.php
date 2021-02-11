@@ -43,6 +43,10 @@ Route::get('/edit/{id}',[MainController::class, 'edit'])->name('edit');
 
 Route::get('/mylist/{id}',[MainController::class,'myList'])->name('myList');
 
+Route::get('/messagebox/{id}',[MainController::class,'messageBox'])->name('messagebox');
+
+Route::get('/chat/{id}',[MainController::class,'chat'])->name('chat');
+
 Route::get('/searchuser',[MainController::class,'searchUser'])->name('searchUser');
 
 Route::post('/searching',[MainController::class,'searching'])->name('searching');
@@ -52,5 +56,7 @@ Route::delete('/searchunfollow/{id}', [MainController::class,'searchUnfollow'])-
 Route::post('/searchfollow',[MainController::class,'searchFollow'])->name('searchFollow');
 
 Route::post('/sendMessage',[MainController::class,'sendMessage'])->name('sendMessage');
+
+Route::post('/reply',[MainController::class,'reply'])->name('reply');
 
 Route::delete('/deleteMessage',[MainController::class,'deleteMessage'])->name('deleteMessage');

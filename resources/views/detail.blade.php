@@ -56,6 +56,9 @@
         
         </form>
     @endif
+    @if (session('sendMessage'))
+        <span>{{ (session('sendMessage')) }}</span>
+    @endif
 
 @endsection
 </body>
