@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+html {
+    font-size: 100%;
+}
+
+.main-nav {
+    list-style: none;
+}

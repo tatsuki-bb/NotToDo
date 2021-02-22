@@ -21,6 +21,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+
+        <div class="page-title">
+        <h1>タイムライン</h1>
+        </div>
             
 
                 
@@ -33,23 +37,28 @@
                     @foreach($mainlists as $list) 
                     <div class="card">
                     <div class="card-body">
-                        <ul>
-                            <li>やらないこと：{{ $list -> content }}</li>
-                            <li>投稿日：{{ $list -> created_at }}</li>
-                            <li>更新日：{{ $list -> updated_at }}</li>
-                            <li>投稿者：<a href="{{ route('users.show',$list->user_id) }}">{{ $list->user->name }}</a></li>
-                            @if ( Auth::id() == $list -> user -> id  )
-                                <li>your list!!</li>
-                            @endif
+                       
+                            <div class="card-head">
+                                <a href="{{ route('users.show',$list->user_id) }}">{{ $list->user->name }}</a>
+                                <div>
+                                @php
+                                    $update = $list -> updated_at;
+                                    echo date("Y.n.j G:i",strtotime($update));
+                                @endphp
+                                </div>
+                            </div>
+                            <div class="card-main">
+                                <div>{{ $list -> content }}</div>
+                            </div>
+                            <div class="card-foot">
+                                <a href="{{ route('post.show',$list->id) }}">詳細</a>
+                                <!-- <div>
+                                @if ( Auth::id() == $list -> user -> id  )
+                                    your list!!
+                                @endif
+                                </div> -->
+                            </div>
 
-                            <!-- @if ( $list -> created_at == $list -> updated_at )
-                                <div class= "signUp">{{ $list->user->name }}さんの新規投稿です</div>
-                            @endif -->
-
-
-                        </ul>
-
-                        <a href="{{ route('post.show',$list->id) }}">詳細</a>
                         
                     </div>
                     </div>
@@ -61,7 +70,10 @@
             
         </div>
     </div>
-    {{ $mainlists->links('pagination::bootstrap-4') }}
+    <div class="pagination">
+        {{ $mainlists->links('pagination::bootstrap-4') }}    
+    </div>
+    
 </div>
 <!-- <a href="/post/create">リスト登録</a> -->
 @endsection

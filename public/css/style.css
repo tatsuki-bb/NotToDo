@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
-.main {
+html {
+    font-size: 100%;
     color: blue;
 }
+
+.main-nav {
+    list-style: none;
+}
+

@@ -11,27 +11,38 @@
 @extends('layouts.app')
 @section('content')
     
+    <div class="page-title">
+        <h1>{{ $user->name }}のやらないことリスト</h1>
+    </div>
     
-    <a href="/post">戻る</a>
-    {{ $user->name }}のやらないことリスト
+
+    <div class="container">
+    <div class="row justify-content-center">
+    <div class="col-md-8">
     
         @foreach($user->mainlists as $list) 
-                        <ul>
-                            <li>やらないこと：{{ $list->content }}</li>
-                            <li>解決策：{{ $list->solution }}</li>
-                            <li>投稿日：{{ $list->created_at }}</li>
-                            <li>更新日：{{ $list->updated_at }}</li>
-                        </ul>
-                        <a href="{{ route('post.show',$list->id) }}">詳細</a>
-                        @php
-                            $i = 1
-                        @endphp
+        <div class="card">
+            <div class="card-body">
+                <h2>{{ $list->content }}</h2>
+    
+                <a href="{{ route('post.show',$list->id) }}">詳細</a>
+
+                @php
+                    $i = 1
+                @endphp
+            </div>
+        </div>
         @endforeach
     @if(empty($i))
         <h3>さっそく"やらないこと"を登録しよう</h3>
     @endif
+
+    </div>
+    </div>
+    </div>
                   
 @endsection
 </body>
+
 
 </html>

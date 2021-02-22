@@ -11,19 +11,47 @@
 @section('content')
     
 
-    <a href="{{ route('posts,index') }}">戻る</a>
-
     @if (session('message'))
         <span>{{ (session('message')) }}</span>
     @endif
 
-    <ul>
-        <li>やらないこと：{{  $mainlists->content }}</li>
-        <li>解決策：{{  $mainlists->solution }}</li>
-        <li>投稿日：{{  $mainlists->created_at }}</li>
-        <li>更新日：{{ $mainlists->updated_at }}</li>
-        <li>投稿者：<a href="{{ route('users.show', $mainlists->user_id) }}">{{  $mainlists->user->name }}</a></li>
-    </ul>
+    <div class="detail-body">
+    <dl>
+        <dt>投稿者</dt>
+        <dd><a href="{{ route('users.show', $mainlists->user_id) }}">{{  $mainlists->user->name }}</a></dd>
+    </dl>
+
+    <dl>
+        <dt>やらないこと</dt>
+        <dd>{{  $mainlists->content }}</dd>
+    </dl>
+
+    <dl>
+        <dt>解決策</dt>
+        <dd>{{  $mainlists->solution }}</dd>
+    </dl>
+    
+    <dl>
+        <dt>更新日</dt>
+        <dd>
+            @php
+                $update = $mainlists->updated_at;
+                echo date("Y.n.j G:i",strtotime($update));
+            @endphp
+       
+        </dd>
+    </dl>
+
+    <dl>
+        <dt>作成日</dt>
+        <dd>
+            @php
+                $create = $mainlists->updated_at;
+                echo date("Y.n.j G:i",strtotime($create));
+            @endphp
+       
+        </dd>
+    </dl>
 
     @if ( Auth::id() == $mainlists->user_id  )
         <a href="{{route('edit', $mainlists->id) }}">編集</a>
@@ -59,6 +87,9 @@
     @if (session('sendMessage'))
         <span>{{ (session('sendMessage')) }}</span>
     @endif
+
+
+    </div>
 
 @endsection
 </body>

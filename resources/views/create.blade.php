@@ -9,15 +9,16 @@
 <body>
 @extends('layouts.app')
 @section('content')
-    <a href="/post">戻る</a>
+    <h1>リスト登録画面</h1>
     <form action="{{ route('post.store')}}" method="POST">
         {{ csrf_field() }}
         @method('POST')
-        <div class="form-group">
+        <div class="form-area">
 
-            <label for="content">やらないこと</label>    
-            <input type="text" id="content"　 class="form-control" name="content">
-               
+        <dl>
+            <dt><label for="content">やらないこと</label></dt>
+            <dd><input type="text" id="content" class="form-design" name="content" size="28"></dd>
+        </dl>      
                 @if ($errors->has('content'))
                 <div class="alert alert-danger mt-3">
                         @foreach ($errors->get('content') as $error)
@@ -26,8 +27,10 @@
                 </div>
                  @endif
 
-            <label for="InputSolution">解決策</label>
-            <textarea class="form-contorl" name="solution" id="InputSolution"　class="form-control" cols="30" rows="10"></textarea>
+        <dl>
+            <dt><label for="InputSolution">解決策</label></dt>
+            <dd><textarea class="form-design" name="solution" id="InputSolution"　cols="30" rows="10"></textarea></dd>
+        </dl>
                 @if ($errors->has('solution'))
                 <div class="alert alert-danger mt-3">
                         @foreach ($errors->get('solution') as $error)
@@ -35,7 +38,7 @@
                         @endforeach
                 </div>
                  @endif
-        </div>
+        
 
         <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                 @if ($errors->has('user_id'))
@@ -45,7 +48,7 @@
                         @endforeach
                 </div>
                  @endif
-        <button type="submit" class="btn btn-primary">登録</button>
+        <button type="submit" class="registration-btn">登録</button>
 
         </div>
     </form>
