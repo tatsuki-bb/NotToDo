@@ -11,16 +11,61 @@
 @extends('layouts.app')
 @section('content')
 
+<h1>メッセージ一覧</h1>
+
 @if ($checkCount == 0)
-    新着メッセージはありません
+    <div class="not-read-message">新着メッセージはありません</div>
 @else
-    新着メッセージが{{ $checkCount }}件あります
+    <div class="read-message">新着メッセージが{{ $checkCount }}件あります</div>
 @endif
 
+<table>
+        <tr>
+            <th>check</th>
+            <th>send</th>
+            <th>NotToDo</th>
+            <th>reply</th>
+        </tr>
+        @foreach($s as $message)
+        <tr>
+            <td>
+                @if ($message->check == 0)
+                    <div style="color: red;">新着</div>
+
+                @else
+                    　済
+                @endif
+            </td>
+            <td>
+                @foreach($users as $messenger)
+                    @if( $message->send_id == $messenger->id)
+                        {{ $messenger->name }}
+                    @endif
+                @endforeach
+            </td>
+            <td>
+                @foreach($mainlists as $mainlist)
+                    @if( $message->mainlist_id == $mainlist->id)
+                        {{ $mainlist->content }}
+                    @endif
+                @endforeach
+
+            </td>
+            <td>
+                <a href="{{ route('chat',$message->chat_id) }}">返信する</a>    
+            </td>
+        </tr>
+        @endforeach
     
-    @foreach($s as $message)
+    </table>
+
+    
+    <!-- @foreach($s as $message)
         @if ($message->check == 0)
-            <div style="color: yellow;">新着メッセージです</div>
+            <div style="color: yellow;">new</div>
+
+        @else
+            ✓
         @endif
 
 
@@ -39,12 +84,8 @@
         <p> {{ $message->message }}</p>
         <p> {{ $message->created_at }}</p>
         <a href="{{ route('chat',$message->chat_id) }}">返信する</a>
-    @endforeach
-
+    @endforeach -->
     
-    
-
-
                   
 @endsection
 </body>

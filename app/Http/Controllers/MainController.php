@@ -209,6 +209,7 @@ class MainController extends Controller
         $message->get_id = $request->getId;
         $message->mainlist_id = $request->mainlistsId;
         $message->message = $request->message;
+        $message->check = 0;
         
         $max_id = Message::max('chat_id');
         $already_id = Message::where('send_id',$request->sendId)->where('mainlist_id',$request->mainlistsId)->get('chat_id');

@@ -23,6 +23,7 @@
         @foreach($user->mainlists as $list) 
         <div class="card">
             <div class="card-body">
+            <div class="mylist-body">
                 <h2>{{ $list->content }}</h2>
     
                 <a href="{{ route('post.show',$list->id) }}">詳細</a>
@@ -30,6 +31,7 @@
                 @php
                     $i = 1
                 @endphp
+            </div>
             </div>
         </div>
         @endforeach
@@ -40,7 +42,7 @@
     </div>
     </div>
     </div>
-                  
+               
 @endsection
 </body>
 

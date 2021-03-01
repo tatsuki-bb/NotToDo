@@ -33,32 +33,40 @@
    @if(isset($searchedUsers))
     @foreach($searchedUsers as $user)
         @if(in_array($user->id,Auth::user()->follow())) 
-        <ul>
-            <li>{{ $user->name }}</li>
-            <li>{{ $user->id }}</li>
-        
-        </ul>
-        
-        <form action="{{ route('searchUnfollow',$user->id) }}" method="POST">
-            {{ csrf_field() }}
-            @method('DELETE')
+        <div class="card">
+            <div class="card-haeder p-3 w-100 d-flex">
+                            
+                <div class="ml-2 d-flex flex-column">
+                <a href="{{ route('users.show',$user->id) }}" class="mb-0">{{ $user->name }}</a>
+                </div>
+
+                <form action="{{ route('searchUnfollow',$user->id) }}" method="POST">
+                {{ csrf_field() }}
+                @method('DELETE')
                 <button type="submit" class="btn btn-primary">フォロー解除</button>
-        </form>
+                </form>
+                        
+            </div>
+        </div>
 
         @else
-        <ul>
-            <li>{{ $user->name }}</li>
-            <li>{{ $user->id }}</li>
-        
-        </ul>
+        <div class="card">
+            <div class="card-haeder p-3 w-100 d-flex">
+                            
+                <div class="ml-2 d-flex flex-column">
+                <a href="{{ route('users.show',$user->id) }}" class="mb-0">{{ $user->name }}</a>
+                </div>
 
-        <form action="{{ route('searchFollow') }}" method="POST">
-            {{ csrf_field() }}
-            @method('POST')
+                <form action="{{ route('searchFollow') }}" method="POST">
+                {{ csrf_field() }}
+                @method('POST')
                 <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                 <input type="hidden" name="follow_id" value="{{ $user->id }}">
                 <button type="submit" class="btn btn-primary">フォロー</button>
-        </form>
+                </form>
+                        
+            </div>
+        </div>
 
         @endif
 

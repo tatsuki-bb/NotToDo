@@ -57,11 +57,13 @@
         <a href="{{route('edit', $mainlists->id) }}">編集</a>
 
     @else
-        メッセージを送信できます
         <form action="{{ route('sendMessage') }}" method="POST">
         {{ csrf_field() }}
             @method('POST')
-                <textarea class="form-contorl" name="message"></textarea>
+            <dl>
+                <dt>
+                    <textarea class="message-form" name="message" placeholder="メッセージを送信できます。"></textarea>
+                </dt>
                 @if ($errors->has('message'))
                 <div class="alert alert-danger mt-3">
                         @foreach ($errors->get('message') as $error)
@@ -80,8 +82,11 @@
                  @endif
                 <input type="hidden" name="getId" value="{{ $mainlists->user_id }}">
                 <input type="hidden" name="mainlistsId" value="{{ $mainlists->id }}">
-                <button type="submit">送信</button>
-        
+                <dd>
+                    <button type="submit" class="message-btn">送信</button>
+                </dd>
+                
+            </dl>
         </form>
     @endif
     @if (session('sendMessage'))

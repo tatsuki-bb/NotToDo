@@ -28,7 +28,7 @@ span {
 
 @media screen and (min-width:601px) and (max-width:2000px) {
     .main {
-        padding-top: 100px;
+        padding-top: 95px;
     }
 
     .page-header {

@@ -13,7 +13,6 @@
 
 @section('content')
 
-<a href="{{ route('searchUser')}}">ユーザーを探す</a>
 
 @if (session('unfollowing'))
     <span>{{ (session('unfollowing')) }}</span>
@@ -24,17 +23,23 @@
 @endif
 
     <div class="container">
+       
+        
         <div class="row justify-content-center">
             <div class="col-md-8">
+
+            <div class="follower-head">
+            <h1>フォロワー</h1>
+            <a href="{{ route('searchUser')}}">ユーザーを探す</a>
+            </div>
                <h2>相互フォロワー</h2>
 
                 @foreach ($all_users  as $user)
                     @if(in_array($user->id,Auth::user()->follow_each())) 
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
-                            <img src="{{ $user->profile_image }}" class="rounded-circle" width="50" height="50">
                             <div class="ml-2 d-flex flex-column">
-                                <p class="mb-0">{{ $user->name }}</p>
+                                <a href="{{ route('users.show',$user->id) }}" class="mb-0">{{ $user->name }}</a>
                             </div>
                             <a href="{{ route('users.show',$user->id) }}">詳細</a>
                             <form action="{{ route('unfollow',$user->id) }}" method="POST">
@@ -54,7 +59,7 @@
                 @endforeach
 
                 @if(empty($a))
-                        <h3>　NO DATA</h3>
+                        <h3>　・・・</h3>
                     @endif
 
                 <h2>承認待ちです</h2>
@@ -64,11 +69,9 @@
                     @if(!in_array($user->id,Auth::user()->followed())) 
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
-                            <img src="{{ $user->profile_image }}" class="rounded-circle" width="50" height="50">
                             <div class="ml-2 d-flex flex-column">
-                                <p class="mb-0">{{ $user->name }}</p>
+                            <a href="{{ route('users.show',$user->id) }}" class="mb-0">{{ $user->name }}</a>
                             </div>
-                            <a href="{{ route('users.show',$user->id) }}">詳細</a>
                             <form action="{{ route('unfollow',$user->id) }}" method="POST">
                             {{ csrf_field() }}
                             @method('DELETE')
@@ -86,7 +89,7 @@
                 @endforeach
 
                 @if(empty($a))
-                        <h3>　NO DATA</h3>
+                        <h3>　・・・</h3>
                 @endif
 
                 <h2>フォローしていません</h2>
@@ -94,13 +97,10 @@
                 @if(!in_array($user->id,Auth::user()->follow())) 
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
-                            <img src="{{ $user->profile_image }}" class="rounded-circle" width="50" height="50">
                             
                             <div class="ml-2 d-flex flex-column">
-                                <p class="mb-0">{{ $user->name }}</p>
+                            <a href="{{ route('users.show',$user->id) }}" class="mb-0">{{ $user->name }}</a>
                             </div>
-                            
-                            <a href="{{ route('users.show',$user->id) }}">詳細</a>
 
                             <form action="{{ route('users.store') }}" method="POST">
                             {{ csrf_field() }}
@@ -131,11 +131,9 @@
                     
                     <div class="card">
                         <div class="card-haeder p-3 w-100 d-flex">
-                            <img src="{{ $user->profile_image }}" class="rounded-circle" width="50" height="50">
                             <div class="ml-2 d-flex flex-column">
-                                <p class="mb-0">{{ $user->name }}</p>
+                            <a href="{{ route('users.show',$user->id) }}" class="mb-0">{{ $user->name }}</a>
                             </div>
-                            <a href="{{ route('users.show',$user->id) }}">詳細</a>
                             <form action="{{ route('users.store') }}" method="POST">
                             {{ csrf_field() }}
                             @method('POST')
@@ -155,7 +153,7 @@
                 @endforeach
 
                 @if(empty($e))
-                        <h3>　NO DATA</h3>
+                        <h3>　・・・</h3>
                 @endif
 
 

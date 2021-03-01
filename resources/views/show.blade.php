@@ -12,17 +12,41 @@
     
 
     <a href="/post">戻る</a>
-    {{ $user->name }}のページです
+    <div class="page-title">
+        <h1>{{ $user->name }}のやらないことリスト</h1>
+    </div>
+    
+
+    <div class="container">
+    <div class="row justify-content-center">
+    <div class="col-md-8">
 
     @foreach($user->mainlists as $list) 
-                        <ul>
-                            <li>やらないこと：{{ $list->content }}</li>
-                            <li>解決策：{{ $list->solution }}</li>
-                            <li>投稿日：{{ $list->created_at }}</li>
-                        </ul>
-                        <a href="{{ route('post.show',$list->id) }}">詳細</a>
+                       
+        <div class="card">
+            <div class="card-body">
+                <div class="mylist-body">
+                    <h2>{{ $list->content }}</h2>
+    
+                    <a href="{{ route('post.show',$list->id) }}">詳細</a>
+
+                    @php
+                        $i = 1
+                    @endphp
+                </div>
+            </div>
+        </div>
+
     @endforeach
 
-@endsection                 
+    @if(empty($i))
+        <h3>未登録</h3>
+    @endif
+
+    </div>
+    </div>
+    </div>
+@endsection
+    
 </body>
 </html>

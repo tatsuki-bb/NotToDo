@@ -10,43 +10,82 @@
     
 @extends('layouts.app')
 @section('content')
+<div class="box-title">{{ $content->content }}　{{ $send_user->name }}</div>
 
-    <h2>[{{ $content->content }}]　{{ $send_user->name }}</h2>
+<div class="Message-box">
     
     @foreach($chats as $chat)
-        @if($chat->send_id == Auth::id())
-            <div class="myMessage">
-                {{ $chat->message }}
-            </div>
-        @else
-            <div class="opponentMessage" style="color:red;">
-                {{ $chat->message }}
-            </div>
-        @endif
+                @if($chat->send_id == Auth::id())
+                <div class="bms_message bms_right">
+                    <div class="bms_message_box">
+                        <div class="bms_message_content">
+                            <div class="bms_message_text">{{ $chat->message }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bms_clear"></div><!-- 回り込みを解除（スタイルはcssで充てる） -->                
+                @else
+                <div class="bms_message bms_left">
+                    <div class="bms_message_box">
+                        <div class="bms_message_content">
+                            <div class="bms_message_text">{{ $chat->message }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bms_clear"></div><!-- 回り込みを解除（スタイルはcssで充てる） -->
+                @endif
 
     @endforeach
 
+
+
     <form action="{{ route('reply') }}" method="POST">
-        {{ csrf_field() }}
+            {{ csrf_field() }}
             @method('POST')
-                <textarea class="form-contorl" name="message"></textarea>
+                <div id="bms_send"> 
+                    <textarea name="message" id="bms_send_message"></textarea>
 
-                <input type="hidden" name="getId" value="{{ $my_chat->send_id }}">
-                <input type="hidden" name="sendId" value="{{ $my_chat->get_id }}">
-                <input type="hidden" name="mainlistsId" value="{{ $my_chat->mainlist_id }}">
-                <input type="hidden" name="chatId" value="{{ $my_chat->chat_id }}">
-                
-                <button type="submit">送信</button>
+                    <input type="hidden" name="getId" value="{{ $my_chat->send_id }}">
+                    <input type="hidden" name="sendId" value="{{ $my_chat->get_id }}">
+                    <input type="hidden" name="mainlistsId" value="{{ $my_chat->mainlist_id }}">
+                    <input type="hidden" name="chatId" value="{{ $my_chat->chat_id }}">
+                    
+                    <button type="submit" id="bms_send_btn">送信</button>
 
-                @if ($errors->has('message'))
-                <div class="alert alert-danger mt-3">
-                        @foreach ($errors->get('message') as $error)
-                            {{ $error }}
-                        @endforeach
+                    @if ($errors->has('message'))
+                    <div class="alert alert-danger mt-3">
+                            @foreach ($errors->get('message') as $error)
+                                {{ $error }}
+                            @endforeach
+                    </div>
+                    @endif
                 </div>
-                 @endif
-        
-        </form>                
+    </form>  
+
+    </div>
+</div>
+<form action="{{ route('reply') }}" method="POST">
+            {{ csrf_field() }}
+            @method('POST')
+                <div id="bms_send"> 
+                    <textarea name="message" id="bms_send_message"></textarea>
+
+                    <input type="hidden" name="getId" value="{{ $my_chat->send_id }}">
+                    <input type="hidden" name="sendId" value="{{ $my_chat->get_id }}">
+                    <input type="hidden" name="mainlistsId" value="{{ $my_chat->mainlist_id }}">
+                    <input type="hidden" name="chatId" value="{{ $my_chat->chat_id }}">
+                    
+                    <button type="submit" id="bms_send_btn">送信</button>
+
+                    @if ($errors->has('message'))
+                    <div class="alert alert-danger mt-3">
+                            @foreach ($errors->get('message') as $error)
+                                {{ $error }}
+                            @endforeach
+                    </div>
+                    @endif
+                </div>
+</form>
 @endsection
 </body>
 
